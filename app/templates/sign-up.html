@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+            <div class="user-profile">
+                <div>
+                    <form class="user-info" action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="title">SIGN UP</div>
+                        <div class="form-group">
+                            <label for="updateFirst">{{ form.fname.label }}</label>
+                            {{ form.fname(class="form-control",id="updateFirst", type="text") }}
+                            {% for error in form.fname.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <label for="updateFirst">First Name</label>
+                            <input id="updateFirst" class="form-control" type="text" name="first" autocomplete="on"
+                                value=""> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="updateLast">{{ form.lname.label }}</label>
+                            {{ form.lname(class="form-control",id="updateLast", type="text") }}
+                            {% for error in form.lname.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <label for="updateLast">Last Name</label>
+                            <input id="updateLast" class="form-control" type="text" name="last" autocomplete="on"
+                                value=""> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="updateEmail">{{ form.email.label }}</label>
+                            {{ form.email(class="form-control",id="updateEmail", type="email") }}
+                            {% for error in form.email.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="updatePassword">{{ form.password.label }}</label>
+                            {{ form.password(class="form-control",id="updatePassword", type="password") }}
+                            {% for error in form.password.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <label for="updatePassword">Password</label>
+                            <input id="updatePassword" class="form-control" type="password" name="password" value=""> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="updatePassword2">{{ form.password2.label }}</label>
+                            {{ form.password2(class="form-control",id="updatePassword2", type="password") }}
+                            {% for error in form.password2.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <label for="repeatPassword">Repeat Password</label>
+                            <input id="repeatPassword" class="form-control" type="password" value=""> -->
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="city">City</label>
+                            <input id="city" class="form-control" type="text" name="city" autocomplete="on" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input id="country" class="form-control" type="text" name="country" autocomplete="on"
+                                value="">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="dob">{{ form.dob.label }}</label>
+                            {{ form.dob(class="form-control",id="dob", type="date") }}
+                            {% for error in form.dob.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <label for="dob">Date of Birth</label>
+                            <input id="dob" class="form-control" type="date" name="dob" autocomplete="on" value=""> -->
+                        </div>
+                        <!-- <div class="form-group gender-section">
+                            <label>Gender</label><br>
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label class="gender-label" for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label class="gender-label" for="male">Female</label>
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label class="gender-label" for="male">Other</label>
+                        </div> -->
+                        <div class="action-buttons-wrapper row">
+                            <div class="col">
+                                <button type="button" id="cancelUpload" class="button btn btn-alt">Cancel</button>
+                            </div>
+                            <div class="col">
+                                {{ form.submit(class="button btn",id="sign-up",type="submit") }}
+                                <!-- <button type="submit" id="sign-up" class="button btn">Sign Up</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

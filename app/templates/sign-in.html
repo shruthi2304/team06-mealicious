@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+            <div class="user-profile">
+                <div>
+                    <form class="user-info" action="" method="post" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="title">SIGN IN</div>
+                        <div class="form-group">
+                            <label for="updateEmail">{{ form.email.label }}</label>
+                            {{ form.email(class="form-control",id="updateEmail", type="email") }}
+                            {% for error in form.email.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <input id="updateEmail" class="form-control" type="email" name="email"
+                                autocomplete="on" value=""> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="updatePassword"> {{ form.password.label }}</label>
+                            {{ form.password(class="form-control", type="password") }}
+                            {% for error in form.password.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                            <!-- <input id="updatePassword" class="form-control" type="password" name="password"
+                                value=""> -->
+                        </div>
+                        <p>{{ form.remember_me(class="form-check-input") }} {{ form.remember_me.label }}</p>
+                        
+                        <div class="action-buttons-wrapper row">
+                            <div class="col">
+                                <button type="button" id="cancelUpload"
+                                    class="button btn btn-alt">Cancel</button>
+                            </div>
+                            <div class="col">
+                                <p>{{ form.submit(class="button btn",id="sign-in",type="submit") }}</p>
+                                <!-- <button type="submit" id="sign-in" class="button btn">Sign In</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

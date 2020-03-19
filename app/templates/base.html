@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mealicious</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Including Google font Roboto-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Team06.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+</head>
+
+<body>
+    <div id="mainpage">
+               <!-- Header Section-->
+               <header class="header-section">
+                <div class="headerbar">
+                    <!-- Mobile Navbar Links-->
+                    <div id="menu-toggle">
+                            <input type="checkbox" />
+                            <div class="hamburguer-icon"><img src="{{ url_for('static', filename='images/hamburger-menu.png') }}" alt="Hamburger icon">
+                            </div>
+                            <ul id="menu">
+                                    <li id="recipes" class="nav-item"><a class="nav-link " href="browse-recipes.html">Browse Recipes</a></li>
+                                    <li id="meal-plans" class="nav-item"><a class="nav-link " href="#aboutus">About Us</a></li>
+                                    <li id="blog" class="nav-item"><a class="nav-link " href="blog.html">Blog</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                    </div>
+                    <!-- Company logo-->
+                    <div id="logodiv" class="header-subsection">
+                        <a>
+                            <img class="logoimg" src="{{ url_for('static', filename='images/mealicious.png') }}" alt="logo" />
+                        </a>
+
+                    </div>
+                    <div class="user-icon"><img src="{{ url_for('static', filename='images/user-icon.png') }}" alt="User icon"></div>
+                    <div class="header-subsection header-right" >
+                        <div class="account">
+                            {% if current_user.is_anonymous %}
+                            <a href="{{ url_for('signin') }}"><button type="button" id="sign-in" class="button login-btn login-btn-alt" >Sign In</button></a>
+                            <a href="{{ url_for('signup') }}"><button type="button" id="sign-up" class="button login-btn">Sign Up</button></a>
+                            {% else %}
+                            <p>Welcome, {{ current_user.fname}} {{ current_user.lname }} </p><a href="{{ url_for('signout') }}"><button type="button" id="sign-out" class="button login-btn login-btn-alt" >Sign Out</button></a>
+                            {% endif %}
+
+                        </div>
+
+                        <!--Desktop Navbar Links-->
+                        <div class="navbar-links">
+                            <div class="navbar-items">
+                                    <a class="nav-link " href="browse-recipes.html">Browse Recipes</a>
+                            </div>
+                            <div class="navbar-items">
+                                    <a class="nav-link " href="#aboutus">About Us</a>
+                            </div>
+                            <div class="navbar-items">
+                                    <a class="nav-link " href="blog.html">Blog</a>
+                            </div>
+                            <div class="navbar-items">
+                                    <a class="nav-link " href="contact-us.html">Contact Us</a>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+    
+            <hr>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+
+        <!-- Footer Section-->
+        <footer>
+            <a href="browse-recipes.html" class="footer-links">Browse recipes</a>
+            <a href="blog.html" class="footer-links">Blog</a>
+            <a href="contact-us.html" class="footer-links">Contact Us</a>
+            <p>&copy; Developed by Team 06</p>
+        </footer>
+    </div>
+
+</body>

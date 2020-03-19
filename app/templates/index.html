@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Background Image and Mascot Section-->
+<section class="homebgimg">
+    <div class="mascot-container">
+        <img class="mascot" src="{{ url_for('static', filename='images/avocuddle.png') }}" alt="">
+        <button class="button">Create your meal plan</button>
+    </div>
+</section>
+
+<!-- About Us Section-->
+<section id="aboutus" class="flex-container">
+    <div class="images-flex-container">
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/Icon_calendar.png') }}" alt="Planning" class="image-size">
+            <p>Plan and track your meals effectively</p>
+        </div>
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/Icon_calories-calculator.png') }}" alt="Calorie Count" class="image-size">
+            <p>Keep a count of your daily and weekly calories</p>
+        </div>
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/Icon_stethoscope.png') }}" alt="Manage Health" class="image-size">
+            <p>Keep your health under your control</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
