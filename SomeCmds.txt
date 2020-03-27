@@ -1,0 +1,59 @@
+flaskenv\Scripts\activate
+### Set the Flask Environment
+set FLASK_APP=mealicious.py
+
+### Enable Debug mode
+set FLASK_DEBUG=1
+
+### For Forms
+pip install flask-wtf
+
+
+### To run the project
+flask run
+
+### Install Database Libraries
+pip install flask-sqlalchemy
+pip install flask-migrate
+
+### To create the db migrations repo and manage everything related to database migrations
+flask db init
+flask db migrate -m "Some Message" ### Creates a migration script of changes to DB
+flask db upgrade ### Apply the changes created in the script
+
+### To set mail server
+export MAIL_SERVER=smtp.googlemail.com
+export MAIL_PORT=587
+export MAIL_USE_TLS=1
+export MAIL_USERNAME=<your-gmail-username>
+export MAIL_PASSWORD=<your-gmail-password>
+
+
+https://team06-mealicious.herokuapp.com/ | https://git.heroku.com/team06-mealicious.git
+
+Creating heroku-postgresql:hobby-dev on ⬢ team06-mealicious... free
+Database has been created and is available
+ ! This database is empty. If upgrading, you can transfer
+ ! data from another database with pg:copy
+Created postgresql-rectangular-24151 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation
+
+
+### Deployment
+heroku apps:create team06-mealicious
+heroku addons:add heroku-postgresql:hobby-dev
+heroku config:set FLASK_APP=mealicious.py
+
+
+Test Credentials:
+Email Address: sh1234@gmail.com
+Password: 1234
+
+Name of Tables:
+user_profile
+meal_info
+mealplan
+mealplan_detail
+
+### Delete data from all Tables
+-- TRUNCATE TABLE mealplan,mealplan_detail,meal_info RESTART IDENTITY CASCADE;

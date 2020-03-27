@@ -7,8 +7,19 @@
     <!-- Including Google font Roboto-->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/636c439cf8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Team06.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+
+    <!--Bootstrap & Jquery JS-->
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -30,7 +41,7 @@
                     </div>
                     <!-- Company logo-->
                     <div id="logodiv" class="header-subsection">
-                        <a>
+                        <a href="{{ url_for('index') }}">
                             <img class="logoimg" src="{{ url_for('static', filename='images/mealicious.png') }}" alt="logo" />
                         </a>
 

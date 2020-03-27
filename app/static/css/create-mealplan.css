@@ -1,0 +1,300 @@
+.mealactionbtn-wrapper{
+    padding: 0;
+}
+.mealheaderlabel{
+    padding: 3px;
+    margin: 10px 0 0 0;
+}
+
+.mealactionbtn{
+    margin-top: 38px;
+}
+
+.mealplan-footer{
+    text-align: center;
+    display: flex;
+    margin: 20px 0;
+}
+
+.mealplan-footer .btn{
+    padding: 7px;
+    font-size: 14px;
+}
+
+.mealplan-table {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: #727272;
+    table-layout:fixed;
+}
+
+.weekday-td {
+    /* min-width: 60px;
+    width: 60px;
+    position: relative; */
+    padding-top: 10%;
+    padding-bottom: 10%;
+    transform: rotate(270deg);
+}
+
+.mealplan-row{
+    border-top: #ADADAD solid 1px;
+    /* border-left: #ADADAD solid 1px; */
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    margin: 0;
+    justify-content: space-between;
+}
+
+.mealplan-row > .weekday-td {
+    border-right: #ADADAD solid 1px;
+}
+
+.mealplan-row > .meal-td{
+    padding-bottom:1%;
+}
+
+.mealheader-td{
+    text-align:center;
+    width:30%;
+}
+
+.mealplan-cell {
+    border: 1px solid lightgrey;
+    width: 85%;
+    margin: 10px;
+    padding: 4px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    text-overflow: ellipsis;
+}
+
+.mealplan-cell span{
+    font-size: 12px;
+}
+.mealplan-cell img{
+    width: 100%;
+    display: flex;
+    margin-bottom:1%;
+    margin-top:1%;
+}
+
+.addbutton{
+    background-color: #35891D;
+    border: none;
+    color: #fff;
+    padding: 1%;
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    display: block;
+    line-height: 0.5;
+    /* box-shadow: 0 0 15px 0 #35891D; */
+    border: 2px solid #35891D;
+    margin: 0 auto;
+    z-index:100000
+}
+
+.savebutton{
+    border: none;
+    color: #35891D;
+    padding: 2%;
+    cursor: pointer;
+    border-radius: 9px;
+    line-height: 1.0;
+    border: 2px solid #35891D;
+    margin: 0 2px;
+    font-size:2.3rem;
+    background-color: #fff;
+}
+
+.trashbutton{
+    color:#FF0000;
+    border: 2px solid #FF0000;
+}
+
+.meal-cal{
+    color: #35891D;
+    font-size: 12px;
+    text-align: center;
+}
+
+/*Modal Style*/
+.modal-header{
+    color: #fff;
+    background-color: #35891D;;
+}
+
+.modal-title{
+    letter-spacing: 0.5px;
+}
+
+.close{
+    text-shadow: none;
+    opacity: 1;
+}
+
+.modal-footer{
+    text-align: center;
+    display: flex;
+}
+
+.modal-footer .btn{
+    font-size: 12px;
+}
+
+h5{
+    text-transform: uppercase;
+    font-size:2rem
+}
+
+
+/*Modal Food images Checkbox CSS */
+ul {
+    list-style-type: none;
+    text-align:center;
+  }
+  
+  li {
+    display: inline-block;
+  }
+  
+  input[type="checkbox"][id^="cb"] {
+    display: none;
+  }
+  
+  label {
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+  }
+  
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+  
+  label img {
+    /* height: 100px; */
+    width: 100%;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+  }
+  
+  :checked + label {
+    border-color: #ddd;
+  }
+  
+  :checked + label:before {
+    content: "\2713";
+    background-color: grey;
+    transform: scale(1);
+  }
+  
+  :checked + label img {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px #333;
+    z-index: -1;
+  }
+
+ .mealplan-modalbody {
+    height:400px;
+    overflow-y: auto;
+  }
+
+  .mealheader-td:first-child{
+        width:10%;
+        border-right: #ADADAD solid 1px;
+    }
+
+
+/* Desktop styles */
+@media only screen and (min-width: 767px) {
+    .weekday-td {
+        /* padding-top: 3%;
+        padding-bottom: 3%; */
+        font-size:2.5rem;
+    }
+
+    .col-right{
+        text-align:right;
+    }
+
+    .mealplan-cell{
+        width:60%;
+        max-width:100%;
+        margin: 2% auto;
+        padding: 1%;
+    }
+
+    .mealplan-cell img{
+        width: 90%;
+        max-width:90%;
+        display: flex;
+        margin-bottom:1%;
+        margin-top:1%;
+    }
+
+    .mealactionbtn{
+        margin-top: 30px;
+    }
+
+    .mealplan-cell span, .meal-cal{
+        font-size:1.3rem;
+    }
+
+    .savebutton{
+        margin: 0 10px;
+    }
+
+    .mealplan-section{
+        margin-top: 40px;
+    }
+
+    .weekday-td {
+        transform: none;
+    }
+
+    .mealheader-td {
+        font-size: 20px;
+    }
+
+    .mealplan-footer{
+        margin: 50px auto;
+        width: 50%;
+    }
+
+    .mealplan-footer .btn{
+        font-size: 16px;
+        margin: 0 30px;
+    }
+
+    .modal-footer .btn{
+        font-size: 16px;
+    }
+
+    .modal-text{
+        font-size: 18px;
+    }
+
+}
