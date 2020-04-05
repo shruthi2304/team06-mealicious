@@ -27,20 +27,21 @@ def upgrade():
     op.create_index(op.f('ix_meal_info_meal_name'), 'meal_info', ['meal_name'], unique=False)
     op.create_table('mealplan',
     sa.Column('mealplan_id', sa.Integer(), nullable=False),
+    sa.Column('mealplan_name', sa.String(length=100), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('week_date', sa.String(length=64), nullable=True),
-    sa.Column('day_name', sa.Integer(), nullable=True),
+    sa.Column('day_name', sa.String(length=3), nullable=True),
     sa.Column('total_daily_cal', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user_profile.user_id'], ),
     sa.PrimaryKeyConstraint('mealplan_id')
     )
-    op.create_index(op.f('ix_mealplan_day_name'), 'mealplan', ['day_name'], unique=False)
+    op.create_index(op.f('ix_mealplan_mealplan_name'), 'mealplan', ['mealplan_name'], unique=False)
     op.create_index(op.f('ix_mealplan_week_date'), 'mealplan', ['week_date'], unique=False)
     op.create_table('mealplan_detail',
     sa.Column('mealplandetail_id', sa.Integer(), nullable=False),
     sa.Column('mealplan_id', sa.Integer(), nullable=True),
     sa.Column('meal_id', sa.Integer(), nullable=True),
-    sa.Column('meal_type', sa.String(length=1), nullable=True),
+    sa.Column('meal_type', sa.String(length=4), nullable=True),
     sa.ForeignKeyConstraint(['meal_id'], ['meal_info.meal_id'], ),
     sa.ForeignKeyConstraint(['mealplan_id'], ['mealplan.mealplan_id'], ),
     sa.PrimaryKeyConstraint('mealplandetail_id')
