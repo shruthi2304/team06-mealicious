@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn mealicious:app
+web: flask db upgrade; gunicorn mealicious:app 

@@ -29,12 +29,12 @@ def upgrade():
     sa.Column('mealplan_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('week_date', sa.String(length=64), nullable=True),
-    sa.Column('day_no', sa.Integer(), nullable=True),
+    sa.Column('day_name', sa.Integer(), nullable=True),
     sa.Column('total_daily_cal', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user_profile.user_id'], ),
     sa.PrimaryKeyConstraint('mealplan_id')
     )
-    op.create_index(op.f('ix_mealplan_day_no'), 'mealplan', ['day_no'], unique=False)
+    op.create_index(op.f('ix_mealplan_day_name'), 'mealplan', ['day_name'], unique=False)
     op.create_index(op.f('ix_mealplan_week_date'), 'mealplan', ['week_date'], unique=False)
     op.create_table('mealplan_detail',
     sa.Column('mealplandetail_id', sa.Integer(), nullable=False),
@@ -54,7 +54,7 @@ def downgrade():
     op.drop_index(op.f('ix_mealplan_detail_meal_type'), table_name='mealplan_detail')
     op.drop_table('mealplan_detail')
     op.drop_index(op.f('ix_mealplan_week_date'), table_name='mealplan')
-    op.drop_index(op.f('ix_mealplan_day_no'), table_name='mealplan')
+    op.drop_index(op.f('ix_mealplan_day_name'), table_name='mealplan')
     op.drop_table('mealplan')
     op.drop_index(op.f('ix_meal_info_meal_name'), table_name='meal_info')
     op.drop_table('meal_info')

@@ -52,7 +52,7 @@ class Mealplan(db.Model):
         return '<Mealplan {}, {}, {} ,{},{}>'.format(self.user_id,self.week_date,self.day_name,self.mealplan_name,self.mealplan_id)
 
 class MealplanDetail(db.Model):
-    mealplandetail_id = db.Column(db.Integer, primary_key=True)
+    mealplandetail_id = db.Column(db.Integer, primary_key=True) 
     mealplan_id = db.Column(db.Integer, db.ForeignKey('mealplan.mealplan_id'))
     meal_id = db.Column(db.Integer, db.ForeignKey('meal_info.meal_id'))
     meal_type = db.Column(db.String(1), index=True)
