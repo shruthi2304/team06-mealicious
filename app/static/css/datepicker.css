@@ -1,0 +1,19 @@
+.datepicker table tr td span.active{
+    background: #35891D!important;
+    border-color: #35891D!important;
+}
+.datepicker .datepicker-days tr td.active {
+    background: #35891D!important;
+}
+#week-picker-wrapper .datepicker .datepicker-days tr td.active~td, #week-picker-wrapper .datepicker .datepicker-days tr td.active {
+    color: #fff;
+    background-color: #35891D;
+    border-radius: 0;
+    cursor:pointer;
+}
+
+#week-picker-wrapper .datepicker .datepicker-days tr:hover td, #week-picker-wrapper .datepicker table tr td.day:hover, #week-picker-wrapper .datepicker table tr td.focused {
+    color: #000!important;
+    background: #e5e2e3!important;
+    border-radius: 0!important;
+}

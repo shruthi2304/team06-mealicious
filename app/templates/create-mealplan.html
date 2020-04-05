@@ -3,6 +3,9 @@
 {% block content %}
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/create-mealplan.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datepicker.css') }}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 </head>
 <div class="container">
 
@@ -10,24 +13,26 @@
 
     <!-- Meal Plan Header-->
     <div class="row">
-        <!-- <input list=languages>
-<datalist id=languages>
- <option value="English"></option>
- <option value="Dutch"></option>
-</datalist> -->
-        <div class="col-md-4 col-xs-5">
-                <div class="form-group">
-                    <label class="mealheaderlabel" for="mealplan-name">Plan Name</label>
-                    <input type="text" value="Demo Meal Plan Name" class="form-control" id="mealplan-name">
-                 </div>
+        <!--Mealplan Name--->
+        <div class="form-group col-md-4 col-xs-5" >
+                    <label class="mealheaderlabel control-label" for="mealplan-name">Mealplan Name</label>
+                    <input type="text" list ="mealplannames"  style="cursor:pointer" oninput="onInputMealplanName()" title = "Click to Select or Enter a Mealplan Name" class="form-control" id="mealplan-name">
+                    <datalist id="mealplannames">
+                        {% for mname in mealplannames %}
+                        <option value="{{mname.mealplan_name}}">{{mname.week_date}}</option>
+                        {% endfor %}
+                    </datalist>
         </div>
-        <div class="col-md-4 col-xs-4">
-                <div class="form-group">
-                    <label class="mealheaderlabel" for="weeklyDatePicker">Week</label>
-                    <input type='text' value="2020-03-21 to 2020-03-27" class="form-control" id='weeklyDatePicker' />
-                </div>
+         <!--Mealplan Week--->
+        <div class="form-group  col-md-4 col-xs-4" id="week-picker-wrapper">
+                    <label class="mealheaderlabel control-label" for="week">Select Week</label>
+                    <input id="weeklyDatePicker" 
+                    style="cursor:pointer" type="text" class="form-control week-picker" 
+                    placeholder="Click to Select a Week"
+                    title="Click to Select a Week">
         </div>
-
+    
+    <!--Save and Clear Mealplan buttons --->
         <div class="col-md-4 col-xs-3 col-right mealactionbtn-wrapper">
                 <div class="form-group mealactionbtn">
                         <button onclick="javascript:save_mealplan()" title="Save Meal Plan" class="savebutton"><i class="fa fa-save"> </i></button>
@@ -48,22 +53,24 @@
                     <th class="mealheader-td"> <span>Dinner</span></th>
                 </tr>
             </thead>
-            {% for day in days %}
+            {% for dayitem in mealplans: %}
+            {% for day,mealplan in dayitem.items(): %}
             <tr class="mealplan-row row">
-                <td class="weekday-td">{{ day.abbr }}</td>
-                {% for meal in meals %}
+                <td class="weekday-td">{{ day }}</td>
+                {% for meal in mealplan %}
                 <td class="meal-td">
                     <div class="mealplan-cell">
-                        <img id='{{day.abbr}}{{meal.mealabbr}}meal'
-                            src="{{ url_for('static', filename='images/food/0.png') }}" alt="0" />
-                        <span id='{{day.abbr}}{{meal.mealabbr}}mealtext' class="meal-text"></span>
-                        <span id='{{day.abbr}}{{meal.mealabbr}}mealcal' class="meal-cal">Calories 0</span>
+                        <img id='{{day}}{{meal.mealtype}}meal'
+                            src="{{ url_for('static', filename='images/food/') }}{{meal.meal_id}}.jpg" alt="{{meal.meal_id}}" />
+                        <span id='{{day}}{{meal.mealtype}}mealtext' class="meal-text">{{meal.meal_name}}</span>
+                        <span id='{{day}}{{meal.mealtype}}mealcal' class="meal-cal">Calories {{meal.meal_cal}}</span>
                     </div>
                     <button type="button" class="addbutton" data-toggle="modal" data-target="#chooseMealModal"><i
                             class="fa fa-plus"> </i></button>
                 </td>
                 {% endfor %}
             </tr>
+            {% endfor %}
             {% endfor %}
         </table>
     </div>
@@ -75,9 +82,7 @@
 </div>
 
 </div>
-<!-- {% for mealname in mealnames %}
-<p>{{mealname.id }} ---- {{mealname.meal_name}} -- {{mealname.cal_count}}</p>
-{% endfor %} -->
+
 <!--Modal Section-->
 <div class="modal fade" id="chooseMealModal" tabindex="-1" role="dialog" aria-labelledby="chooseMealModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -108,63 +113,6 @@
                         </li>
                     </div>
                     {% endfor %}
-                    <!-- <div class="col-md-4 col-xs-6">
-                        <li>
-                            <input type="checkbox" id="cb2" name='img-checkbox'/>
-                            <label for="cb2">
-                                <img src="{{ url_for('static', filename='images/bf_002.jpg') }}" alt="2" />
-                                <span>Ham & Egg Breakfast Cups</span>
-                                <div class="meal-cal"><span >Calories 120</span></div>
-                            </label>
-                        </li>
-                    </div>
-                    <div class="col-md-4 col-xs-6">
-                        <li><input type="checkbox" id="cb3" name='img-checkbox' />
-                            <label for="cb3">
-                                <img src="{{ url_for('static', filename='images/bf_003.jpg') }}" alt=3 />
-                                <span>Hummus & Veggie Bowl</span>
-                                <div class="meal-cal"><span >Calories 642</span></div>
-                            </label>
-                          </li>
-                    </div>
-                    
-                    <div class="col-md-4 col-xs-6">
-                        <li><input type="checkbox" id="cb4" name='img-checkbox'  />
-                            <label for="cb4">
-                                <img src="{{ url_for('static', filename='images/bf_004.jpg') }}" alt=4 />
-                                <span>Low Carb Pancakes</span>
-                                <div class="meal-cal"><span >Calories 450</span></div>
-                            </label>
-                          </li>
-                    </div>
-
-                    <div class="col-md-4 col-xs-6">
-                        <li><input type="checkbox" id="cb5" name='img-checkbox' />
-                            <label for="cb5">
-                                <img src="{{ url_for('static', filename='images/bf_001.jpg') }}" alt=1 />
-                                <span>Low Carb Breakfast Skillet</span>
-                                <div class="meal-cal"><span >Calories 530</span></div>
-                            </label>
-                          </li>
-                    </div>
-                    <div class="col-md-4 col-xs-6">
-                        <li><input type="checkbox" id="cb6" name='img-checkbox' />
-                            <label for="cb6">
-                                <img src="{{ url_for('static', filename='images/bf_001.jpg') }}" alt=1 />
-                                <span>Low Carb Breakfast Skillet</span>
-                                <div class="meal-cal"><span >Calories 530</span></div>
-                            </label>
-                        </li>
-                    </div>
-                    <div class="col-md-4 col-xs-6">
-                        <li><input type="checkbox" id="cb7" name='img-checkbox' />
-                            <label for="cb7">
-                                <img src="{{ url_for('static', filename='images/bf_001.jpg') }}" alt=1 />
-                                <span>Low Carb Breakfast Skillet</span>
-                                <div class="meal-cal"><span >Calories 530</span></div>
-                            </label>
-                        </li>
-                    </div> -->
                 </ul>
               </div>
           </div>
@@ -197,9 +145,6 @@
         var mealName;
         var mealCal;
         $('input:checkbox[name=img-checkbox]:checked').each(function () {
-            // console.log($(this).nextAll()[0].children[0].src)
-            // console.log($(this).nextAll()[0].children[1].textContent)
-            // console.log($(this).nextAll()[0].children[2].textContent)
             mealImgName = $(this).nextAll()[0].children[0].src
             mealImageId = $(this).nextAll()[0].children[0].alt
             mealName = $(this).nextAll()[0].children[1].textContent
@@ -218,11 +163,7 @@
 
     });
 
-    function save_mealplan() {
-        if ($("#mealplan-name").val() == "") {
-            alert("Please enter a Meal Plan Name!!")
-        }
-
+    function createMealplanObj(){
         mealplan_name = $("#mealplan-name").val()
         mealplan_week = $("#weeklyDatePicker").val()
         mealplan_table = $("#mealplan")
@@ -232,39 +173,44 @@
         dayname = $(this).find('td.weekday-td').text()
         calories = 0
         mealplanObj[dayname] = {}
-        // console.log(dayname)
         //For Breakfast
         meal_type = 'b'
         meal_id = $tds.eq(0).find('img')[0].alt
         cal = $tds.eq(0).find('span.meal-cal')[0].textContent.split(" ")[1]
         calories = calories + parseInt(cal)
-        //console.log(meal_type + "  " + meal_id + "  " + cal)
         mealplanObj[dayname][meal_type] = {"meal_id": meal_id, "cal": cal }
         //For Lunch
         meal_type = 'l'
         meal_id = $tds.eq(1).find('img')[0].alt
         cal = $tds.eq(1).find('span.meal-cal')[0].textContent.split(" ")[1]
         calories = calories + parseInt(cal)
-        //console.log(meal_type + "  " + meal_id + "  " + cal)
         mealplanObj[dayname][meal_type] = {"meal_id": meal_id, "cal": cal } 
         //For Dinner
         meal_type = 'd'
         meal_id = $tds.eq(2).find('img')[0].alt
         cal = $tds.eq(2).find('span.meal-cal')[0].textContent.split(" ")[1]
         calories = calories + parseInt(cal)
-        //console.log(meal_type + "  " + meal_id + "  " + cal)
         //Push the mealplans into object
         mealplanObj[dayname][meal_type] = {"meal_id": meal_id, "cal": cal }
         mealplanObj[dayname]['totalcal'] = calories
         })
-        console.log(mealplanObj)
+        return mealplanObj;
+    }
+    function save_mealplan() {
+        if ($("#mealplan-name").val() == "") {
+            alert("Please enter a Meal Plan Name!!")
+        }
+
+        mealplanObj = createMealplanObj()
+      
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/create-mealplan",
-            data: JSON.stringify({'mealplanobj': mealplanObj,'mealplanName':mealplan_name,'mealplanWeek':mealplan_week}),
+            data: JSON.stringify({'mealplanobj': mealplanObj,'mealplanName':mealplan_name,'mealplanWeek':mealplan_week,
+            'option':'create_mealplan'}),
             success: function (data) {
-                alert("Response from server"+data['status'])
+                alert(data['status'])
             },
             dataType: "json",
             error:function(header,status){
@@ -273,6 +219,94 @@
         });
 
     }
+
+    //On Selecting an Existing Mealplan Name
+    function onInputMealplanName() {
+        var val = document.getElementById("mealplan-name").value;
+        var opts = document.getElementById('mealplannames').childNodes;
+        for (var i = 0; i < opts.length; i++) {
+            if (opts[i].value === val) {
+                mealplan_week = opts[i].textContent
+                $("#weeklyDatePicker").val(mealplan_week)
+                mealplanObj = createMealplanObj()
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/create-mealplan",
+                    data: JSON.stringify({'mealplanobj': mealplanObj,
+                    'mealplanName':mealplan_name,'mealplanWeek':mealplan_week,
+                    'option':'view_mealplan'}),
+                    success: function (data) {
+                        //alert(data['status'])
+                        viewMealplans(data['Response'])
+                        console.log(data['Response'])
+                    },
+                    dataType: "json",
+                    error:function(header,status){
+                        alert(status)
+                    }
+                });
+                break;
+            }
+        }
+    }
+
+    //View Mealplans
+    function viewMealplans(mealplans){
+        for(var i =0;i<mealplans.length;i++){
+            meal_type = mealplans[i][3]
+            if (meal_type == 'b'){
+                meal_type = 'bf'
+            }else if(meal_type == 'l'){
+                meal_type = 'lun'
+            }else{
+                meal_type = 'din'
+            }
+            img = mealplans[i][0]
+            meal_name = mealplans[i][1]
+            if(meal_name == "default"){
+                meal_name = ""
+            }
+            meal_cal = mealplans[i][2]
+            day = mealplans[i][4]
+            console.log("#"+day+meal_type+"meal")
+            $("#"+day+meal_type+"meal").attr("src", "{{ url_for('static', filename='images/food/') }}"+img+".jpg");
+            $("#"+day+meal_type+"meal").attr("alt", img);
+            $("#"+day+meal_type+"mealtext").text(meal_name)
+            $("#"+day+meal_type+"mealcal").text("Calories "+meal_cal)
+        }
+    }
+
+    //For Weekly Date Picker
+    var weekpicker, start_date, end_date;
+    function set_week_picker(date) {
+        start_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+        end_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+        weekpicker.datepicker('update', start_date);
+        weekpicker.val((start_date.getMonth() + 1) + '/' + start_date.getDate() + '/' + start_date.getFullYear() + ' - ' + (end_date.getMonth() + 1) + '/' + end_date.getDate() + '/' + end_date.getFullYear());
+    }
+    $(document).ready(function () {
+        weekpicker = $('.week-picker');
+        console.log(weekpicker);
+        weekpicker.datepicker({
+            autoclose: true,
+            forceParse: false,
+            container: '#week-picker-wrapper',
+        }).on("changeDate", function (e) {
+            set_week_picker(e.date);
+        });
+        $('.week-prev').on('click', function () {
+            var prev = new Date(start_date.getTime());
+            prev.setDate(prev.getDate() - 1);
+            set_week_picker(prev);
+        });
+        $('.week-next').on('click', function () {
+            var next = new Date(end_date.getTime());
+            next.setDate(next.getDate() + 1);
+            set_week_picker(next);
+        });
+        set_week_picker(new Date);
+    });
 </script>
 
 {% endblock %}

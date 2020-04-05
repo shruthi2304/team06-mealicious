@@ -1,0 +1,11 @@
+textarea.form-control{
+	border-color: #35891D;
+	font-size: 18px;
+	color: #272727;
+}
+
+textarea.form-control:focus{
+	border-color: #35891D;
+	box-shadow: 0 0 0 0.2rem #35891D;
+}
+

@@ -49,7 +49,7 @@ class Mealplan(db.Model):
     mealplandetails = db.relationship('MealplanDetail', backref='mealplaninf', lazy='dynamic')
 
     def __repr__(self):
-        return '<Mealplan {}, {}, {} >'.format(self.user_id,self.week_no,self.day_no)
+        return '<Mealplan {}, {}, {} ,{},{}>'.format(self.user_id,self.week_date,self.day_name,self.mealplan_name,self.mealplan_id)
 
 class MealplanDetail(db.Model):
     mealplandetail_id = db.Column(db.Integer, primary_key=True)

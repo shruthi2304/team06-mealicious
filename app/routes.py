@@ -49,15 +49,28 @@ def signup():
     return render_template('sign-up.html', title='Sign-Up - Mealicious', form=form)
 
 
+@app.route('/contact-us', methods=['GET', 'POST'])
+def contact_us():
+    return render_template('contact-us.html', title='Contact Us - Mealicious')
+
+@app.route('/browse-meals', methods=['GET', 'POST'])
+def browse_meals():
+    return render_template('browse-meals.html', title='Contact Us - Mealicious')
+
 @app.route('/create-mealplan', methods=['GET', 'POST'])
 @login_required #To protect from users who are not authenticated
 def create_mealplan():
-    days = [{'abbr':'sat'},{'abbr':'sun','name':'Sunday'},{'abbr':'mon','name':'Monday'},
-    {'abbr':'tue','name':'Tue'},{'abbr':'wed','name':'Wednesday'},{'abbr':'thu','name':'Thursday'},
-    {'abbr':'fri','name':'Friday'}]
-    meals = [{'mealabbr':'bf'},{'mealabbr':'lun'},{'mealabbr':'din'}]
+    days = ['sat','sun','mon','tue','wed','thu','fri']
+    mealplans = []
+    for day in days:
+        mealplandic = {}
+        mealplandic[day] = [{'mealtype':'bf','meal_id':0,'meal_name':'','meal_cal':0},
+        {'mealtype':'lun','meal_id':0,'meal_name':'','meal_cal':0},
+        {'mealtype':'din','meal_id':0,'meal_name':'','meal_cal':0}]
+        mealplans.append(mealplandic)
     mealnames = MealInfo.query.filter(MealInfo.meal_id != 0).all()
-    if request.method == 'POST':
+    mealplannames = Mealplan.query.distinct(Mealplan.week_date,Mealplan.mealplan_name).all()
+    if request.method == 'POST' and request.json['option']=='create_mealplan':
         user_id = current_user.user_id
         mealplan_name = request.json['mealplanName']
         mealplan_week = request.json['mealplanWeek']
@@ -77,5 +90,11 @@ def create_mealplan():
             db.session.add(lunmeal)
             db.session.add(dinmeal)
             db.session.commit()
-        return jsonify({'status':"Meal Plan Created Successfully"})
-    return render_template('create-mealplan.html', title='Create Mealplan - Mealicious',days=days,meals=meals,mealnames=mealnames)
+        return jsonify({'status':"Mealplan Created Successfully","Response":0})
+    elif(request.method == 'POST' and request.json['option']=='view_mealplan'):
+        user_id = current_user.user_id
+        mealplan_name = request.json['mealplanName']
+        mealplan_week = request.json['mealplanWeek']
+        viewplans = db.session.query(MealInfo.meal_id,MealInfo.meal_name,MealInfo.cal_count,MealplanDetail.meal_type,Mealplan.day_name).join(Mealplan.mealplandetails).join(MealInfo).filter(Mealplan.mealplan_name == mealplan_name).filter(Mealplan.week_date == mealplan_week).all()
+        return jsonify({'status':"View Meal Plans","Response":viewplans})
+    return render_template('create-mealplan.html', title='Create Mealplan - Mealicious',mealplans=mealplans,mealnames=mealnames,mealplannames=mealplannames)
