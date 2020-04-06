@@ -59,4 +59,7 @@ mealplan_detail
 -- TRUNCATE TABLE mealplan,mealplan_detail,meal_info RESTART IDENTITY CASCADE;
 
 PGPASSWORD=<your password> psql -h <your heroku host> -U <heroku user> <heroku postgres database name> -c "\copy bank (ifsc, bank_id, branch, address, city, district, state, bank_name) FROM '<local file path location>' CSV HEADER DELIMITER E'\t';"
-PGPASSWORD=3e923fa1e1879eb458f4719de4bdba9629e5e29ba3c4658989530b68bc690f01 psql -h ec2-34-202-7-83.compute-1.amazonaws.com -U mcdhzsvpomoyir d6p9qfhei3oth8 -c "\copy bank (ifsc, bank_id, branch, address, city, district, state, bank_name) FROM '<local file path location>' CSV HEADER DELIMITER E'\t';"
+
+PGPASSWORD=3e923fa1e1879eb458f4719de4bdba9629e5e29ba3c4658989530b68bc690f01 psql -h ec2-34-202-7-83.compute-1.amazonaws.com -U mcdhzsvpomoyir d6p9qfhei3oth8 -c "\copy meal_info (meal_id, meal_name, cal_count) FROM 'C:\Users\shett\Desktop\Shruthi\CourseWork\SPRING-2020\ISTM 631\project\team06_mealicious\data\mealicious_data_01.csv' CSV HEADER DELIMITER E'\t';"
+
+psql -h ec2-34-202-7-83.compute-1.amazonaws.com -U mcdhzsvpomoyir d6p9qfhei3oth8 -c "\copy meal_info (meal_id, meal_name, cal_count) FROM 'C:\Users\shett\Desktop\Shruthi\CourseWork\SPRING-2020\ISTM 631\project\team06_mealicious\data\mealicious_data_01.csv' CSV HEADER DELIMITER E'\t';"

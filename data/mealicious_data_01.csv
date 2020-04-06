@@ -1,30 +1,30 @@
-﻿meal_id,meal_name,cal_count
-1,Strawberries & Cream Oatmeal,450
-2,Sweet and Tangy Asian Inspired Meatballs,220
-3,Asian Greens,100
-4,Southwestern Bean Salad,160
-5,Sweet Island Trail Mix,130
-6,PB&J Trail Mix,120
-7,Asian Crunch Trail Mix,230
-8,Chocolate Peanut Butter Oatmeal,440
-9,Black Bean Tacos,450
-10,Creamy Dijon Salmon,290
-11,Superfood Trail Mix,180
-12,Chicken Caesar Meatballs,150
-13,Orange Ginger Salmon,270
-14,Fresh Three Bean Salad,200
-15,Asian Style Green Bean Salad,100
-16,Crispy Roasted Potatoes,240
-17,Power Greens Stir Fry,250
-18,Feta and Herb Crusted Salmon,240
-19,Curried Lentil Soup,220
-20,Vanilla Chai Oatmeal,370
-21,Very Berry Oatmeal,350
-22,Vegan Jambalaya,670
-23,Fresh Noodle Bowl,450
-24,Asian Mushroom Noodle Soup,360
-25,Mushroom Fried Rice,270
-26,Low Carb Breakfast Skillet,530
-27,Ham & Egg Breakfast Cups,120
-28,Hummus & Veggie Bowl,642
-29,Low Carb Pancakes,450
+﻿meal_id,meal_name,cal_count,
+1,Strawberries & Cream Oatmeal,450,"INSERT INTO meal_info values( 1,'Strawberries & Cream Oatmeal',450);"
+2,Sweet and Tangy Asian Inspired Meatballs,220,"INSERT INTO meal_info values( 2,'Sweet and Tangy Asian Inspired Meatballs',220);"
+3,Asian Greens,100,"INSERT INTO meal_info values( 3,'Asian Greens',100);"
+4,Southwestern Bean Salad,160,"INSERT INTO meal_info values( 4,'Southwestern Bean Salad',160);"
+5,Sweet Island Trail Mix,130,"INSERT INTO meal_info values( 5,'Sweet Island Trail Mix',130);"
+6,PB&J Trail Mix,120,"INSERT INTO meal_info values( 6,'PB&J Trail Mix',120);"
+7,Asian Crunch Trail Mix,230,"INSERT INTO meal_info values( 7,'Asian Crunch Trail Mix',230);"
+8,Chocolate Peanut Butter Oatmeal,440,"INSERT INTO meal_info values( 8,'Chocolate Peanut Butter Oatmeal',440);"
+9,Black Bean Tacos,450,"INSERT INTO meal_info values( 9,'Black Bean Tacos',450);"
+10,Creamy Dijon Salmon,290,"INSERT INTO meal_info values( 10,'Creamy Dijon Salmon',290);"
+11,Superfood Trail Mix,180,"INSERT INTO meal_info values( 11,'Superfood Trail Mix',180);"
+12,Chicken Caesar Meatballs,150,"INSERT INTO meal_info values( 12,'Chicken Caesar Meatballs',150);"
+13,Orange Ginger Salmon,270,"INSERT INTO meal_info values( 13,'Orange Ginger Salmon',270);"
+14,Fresh Three Bean Salad,200,"INSERT INTO meal_info values( 14,'Fresh Three Bean Salad',200);"
+15,Asian Style Green Bean Salad,100,"INSERT INTO meal_info values( 15,'Asian Style Green Bean Salad',100);"
+16,Crispy Roasted Potatoes,240,"INSERT INTO meal_info values( 16,'Crispy Roasted Potatoes',240);"
+17,Power Greens Stir Fry,250,"INSERT INTO meal_info values( 17,'Power Greens Stir Fry',250);"
+18,Feta and Herb Crusted Salmon,240,"INSERT INTO meal_info values( 18,'Feta and Herb Crusted Salmon',240);"
+19,Curried Lentil Soup,220,"INSERT INTO meal_info values( 19,'Curried Lentil Soup',220);"
+20,Vanilla Chai Oatmeal,370,"INSERT INTO meal_info values( 20,'Vanilla Chai Oatmeal',370);"
+21,Very Berry Oatmeal,350,"INSERT INTO meal_info values( 21,'Very Berry Oatmeal',350);"
+22,Vegan Jambalaya,670,"INSERT INTO meal_info values( 22,'Vegan Jambalaya',670);"
+23,Fresh Noodle Bowl,450,"INSERT INTO meal_info values( 23,'Fresh Noodle Bowl',450);"
+24,Asian Mushroom Noodle Soup,360,"INSERT INTO meal_info values( 24,'Asian Mushroom Noodle Soup',360);"
+25,Mushroom Fried Rice,270,"INSERT INTO meal_info values( 25,'Mushroom Fried Rice',270);"
+26,Low Carb Breakfast Skillet,530,"INSERT INTO meal_info values( 26,'Low Carb Breakfast Skillet',530);"
+27,Ham & Egg Breakfast Cups,120,"INSERT INTO meal_info values( 27,'Ham & Egg Breakfast Cups',120);"
+28,Hummus & Veggie Bowl,642,"INSERT INTO meal_info values( 28,'Hummus & Veggie Bowl',642);"
+29,Low Carb Pancakes,450,"INSERT INTO meal_info values( 29,'Low Carb Pancakes',450);"
