@@ -2,6 +2,7 @@ from flask import render_template, flash, redirect,url_for,request,jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import UserProfile,Mealplan,MealplanDetail,MealInfo
 from werkzeug.urls import url_parse
+import time
 
 from app import app,db
 from app.forms import LoginForm,RegistrationForm
@@ -19,7 +20,7 @@ def signin():
     if form.validate_on_submit():
         user = UserProfile.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash("Invalid Email Address Or Password")
+            flash("Invalid Email Address Or Password==alert-danger")
             return redirect(url_for('signin'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -44,7 +45,7 @@ def signup():
         user.set_dob(form.dob.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Congratulations, you are now a registered user!==alert-success')
         return redirect(url_for('signin'))
     return render_template('sign-up.html', title='Sign-Up - Mealicious', form=form)
 
@@ -55,23 +56,27 @@ def contact_us():
 
 @app.route('/browse-meals', methods=['GET', 'POST'])
 def browse_meals():
-    return render_template('browse-meals.html', title='Contact Us - Mealicious')
+    return render_template('browse-meals.html', title='Browse Meals - Mealicious')
+
+@app.route('/meet-team', methods=['GET', 'POST'])
+def meet_team():
+    return render_template('team-page.html', title='Meet The Team - Mealicious')
 
 @app.route('/create-mealplan', methods=['GET', 'POST'])
 @login_required #To protect from users who are not authenticated
 def create_mealplan():
+    user_id = current_user.user_id
     days = ['sat','sun','mon','tue','wed','thu','fri']
-    mealplans = []
+    mealplans_view = []
     for day in days:
         mealplandic = {}
         mealplandic[day] = [{'mealtype':'bf','meal_id':0,'meal_name':'','meal_cal':0},
         {'mealtype':'lun','meal_id':0,'meal_name':'','meal_cal':0},
         {'mealtype':'din','meal_id':0,'meal_name':'','meal_cal':0}]
-        mealplans.append(mealplandic)
+        mealplans_view.append(mealplandic)
     mealnames = MealInfo.query.filter(MealInfo.meal_id != 0).all()
-    mealplannames = Mealplan.query.distinct(Mealplan.week_date,Mealplan.mealplan_name).all()
+    mealplannames = Mealplan.query.distinct(Mealplan.week_date,Mealplan.mealplan_name).filter(Mealplan.user_id == user_id).all()
     if request.method == 'POST' and request.json['option']=='create_mealplan':
-        user_id = current_user.user_id
         mealplan_name = request.json['mealplanName']
         mealplan_week = request.json['mealplanWeek']
         mealplans = request.json['mealplanobj']
@@ -90,11 +95,11 @@ def create_mealplan():
             db.session.add(lunmeal)
             db.session.add(dinmeal)
             db.session.commit()
-        return jsonify({'status':"Mealplan Created Successfully","Response":0})
+            flash('Congratulations, Your Mealplan is Created Successfully.==alert-success')
+            return jsonify({'status':"Congratulations, Your Mealplan is Created Successfully. Please wait while the page reloads.....","Response":0})
     elif(request.method == 'POST' and request.json['option']=='view_mealplan'):
-        user_id = current_user.user_id
         mealplan_name = request.json['mealplanName']
         mealplan_week = request.json['mealplanWeek']
-        viewplans = db.session.query(MealInfo.meal_id,MealInfo.meal_name,MealInfo.cal_count,MealplanDetail.meal_type,Mealplan.day_name).join(Mealplan.mealplandetails).join(MealInfo).filter(Mealplan.mealplan_name == mealplan_name).filter(Mealplan.week_date == mealplan_week).all()
+        viewplans = db.session.query(MealInfo.meal_id,MealInfo.meal_name,MealInfo.cal_count,MealplanDetail.meal_type,Mealplan.day_name).join(Mealplan.mealplandetails).join(MealInfo).filter(Mealplan.mealplan_name == mealplan_name).filter(Mealplan.week_date == mealplan_week).filter(Mealplan.user_id == user_id).all()
         return jsonify({'status':"View Meal Plans","Response":viewplans})
-    return render_template('create-mealplan.html', title='Create Mealplan - Mealicious',mealplans=mealplans,mealnames=mealnames,mealplannames=mealplannames)
+    return render_template('create-mealplan.html', title='Create Mealplan - Mealicious',mealplans=mealplans_view,mealnames=mealnames,mealplannames=mealplannames)

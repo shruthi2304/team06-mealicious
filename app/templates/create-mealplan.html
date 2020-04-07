@@ -16,8 +16,8 @@
         <!--Mealplan Name--->
         <div class="form-group col-md-4 col-xs-5" >
                     <label class="mealheaderlabel control-label" for="mealplan-name">Mealplan Name</label>
-                    <input type="text" list ="mealplannames"  style="cursor:pointer" oninput="onInputMealplanName()" title = "Click to Select or Enter a Mealplan Name" class="form-control" id="mealplan-name">
-                    <datalist id="mealplannames">
+                    <input type="text" placeholder="Click to Type or Select a Mealplan" list ="mealplannames"  style="cursor:pointer" oninput="onInputMealplanName()" title = "Click to Select or Enter a Mealplan Name" class="form-control" id="mealplan-name">
+                    <datalist id="mealplannames" class="dropdown1">
                         {% for mname in mealplannames %}
                         <option value="{{mname.mealplan_name}}">{{mname.week_date}}</option>
                         {% endfor %}
@@ -102,16 +102,16 @@
               <div class="col-xs-12">
                 <ul>
                     {% for mealname in mealnames %}
-                    <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-xs-6 modal-mealbody">
                         <li>
                             <input type="checkbox" id="cb{{mealname.meal_id}}" name='img-checkbox' />
                             <label for="cb{{mealname.meal_id}}">
                                 <img src="{{ url_for('static', filename='images/food/') }}{{ mealname.meal_id}}.jpg" alt="{{mealname.meal_id}}" />
-                                <span style="text-overflow: ellipsis;">{{mealname.meal_name}}</span>
+                                <div><span>{{mealname.meal_name}}</span></div>
                                 <div class="meal-cal"><span>Calories {{mealname.cal_count}}</span></div>
                             </label>
                         </li>
-                    </div>
+                        </div>
                     {% endfor %}
                 </ul>
               </div>
@@ -210,7 +210,8 @@
             data: JSON.stringify({'mealplanobj': mealplanObj,'mealplanName':mealplan_name,'mealplanWeek':mealplan_week,
             'option':'create_mealplan'}),
             success: function (data) {
-                alert(data['status'])
+                //alert(data['status'])
+                setTimeout(window.location.reload(false),3000); 
             },
             dataType: "json",
             error:function(header,status){

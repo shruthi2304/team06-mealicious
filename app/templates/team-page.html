@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/team-page.css') }}" />
+</head>
+
+<div class="title">
+    <p>MEET THE TEAM</p>
+</div>
+<section id="abouttheteam" class="flex-container">
+    <div class="images-flex-container">
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/prathamesh.jpg') }}"  alt="Prathamesh" class="image-size">
+            <p><b>Prathamesh Bachal</b></p>
+            <p>Worries more than he works. Almost a developer. Finds good images.</p>
+        </div>
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/shagun.jpeg') }}" alt="Shagun" class="image-size">
+            <p><b>Shagun Shukla</b></p>
+            <p>The UI guru. Doesn't speak much. Gets things done.</p>
+        </div>
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/pratima.jpeg') }}"  alt="Pratima" class="image-size">
+            <p><b>Pratima Purohit</b></p>
+            <p>Jack of all trades. Will try her hand at anything. Needs food.</p>
+        </div>
+        <div class="flex-image image-size">
+            <img src="{{ url_for('static', filename='images/shruthi.jpeg') }}"  alt="Shruthi" alt="Manage Health" class="image-size">
+            <p><b>Shruthi Shetty</b></p>
+            <p>The calm one. Jumps head first into trying new things. Always smiling.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

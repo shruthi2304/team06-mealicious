@@ -226,6 +226,9 @@ ul {
         width:10%;
         border-right: #ADADAD solid 1px;
     }
+.modal-mealbody {
+    height: 200px;
+}
 
 
 /* Desktop styles */

@@ -67,7 +67,7 @@
                                     <a class="nav-link " href="{{url_for('create_mealplan')}}">Create / View Mealplans</a>
                             </div>
                             <div class="navbar-items">
-                                    <a class="nav-link " href="blog.html">About Us</a>
+                                    <a class="nav-link " href="{{url_for('meet_team')}}">Meet The Team</a>
                             </div>
                             <div class="navbar-items">
                                     <a class="nav-link " href="{{url_for('contact_us')}}">Contact Us</a>
@@ -79,14 +79,20 @@
                 </div>
             </header>
     
-            <hr>
+            <!-- <hr> -->
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <ul>
+            <!-- <ul class="flash_message">
                 {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
-            </ul>
+            </ul> -->
+                {% for message in messages %}
+                <div class="alert {{message.split('==')[1]}} alert-dismissible show">
+                    <strong>{{ message.split('==')[0] }}</strong>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                {% endfor %}
             {% endif %}
             {% endwith %}
 

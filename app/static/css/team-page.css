@@ -69,32 +69,6 @@ a:hover{
      width: 100%;
 }
 
-/*Middle Section Styles - Background Image, Mascot */
-.homebgimg {
-     height: 672px;
-     height: 42%; /* 672px / 1600px */
-     background-repeat: no-repeat, no-repeat;
-     background-size: 100%, contain;
-     background-image: url(../images/homeimage-mobile.jpg);
-     position: relative;
-}
-
-.mascot-container {
-     position: absolute;
-     transform: translate(-50%, -50%);
-     top: 50%;     
-     left: 50%;
-     height: 370px;
-     height: 55%; /* 370px / 672px */
-     width: 100%;
-}
-
-.mascot {
-     height: 185px; 
-     height: 50%; /* 185px / 370px */
-     display: block;
-}
-
 /* About Us Section Styles */
 .flex-container {
      display: flex;
@@ -103,12 +77,11 @@ a:hover{
 
 .images-flex-container {
      width: 338px;
-     width: 90%; /* 338px / 375px */
+     width: 100%; /* 338px / 375px */
      display: flex;
      flex-direction: row;
-     justify-content: space-around;
+     justify-content: space-evenly;
      flex-wrap: wrap;
-     margin: 5%; /* 18px / 375px */
 }
 
 .image-size {
@@ -120,6 +93,7 @@ a:hover{
      margin: 5%; /* 17px / 338px */
      padding: 5%; /* 17px / 338px */
      text-align: center;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .flex-image p {
@@ -259,32 +233,8 @@ footer {
          padding: 0;
     }
 
-    .homebgimg {
-         background-image: url(../images/homeimage.jpg);
-         height: 475px;
-         height: 50%; /* 475px / 950px */
-    }
-    
-    .mascot-container {
-         width: auto;
-         height: 80%; /* 380px / 475px */
-    }
-
-    .mascot-container .button {
-        padding: 5% 6%;
-    }
-
-    .mascot {
-         height: 266px; 
-         height: 70%; /* 266px / 380px */
-    }
-
     .account {
          text-align: right;
-    }
-
-    .account p {
-         display:inline;
     }
 
     .footer-links {
@@ -310,7 +260,7 @@ footer {
     }
 
     .image-size {
-         width: 28%;
+         width: 35%;
     }
 
     .flex-image {
