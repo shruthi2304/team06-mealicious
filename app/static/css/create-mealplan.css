@@ -55,6 +55,7 @@
 
 .mealplan-row > .meal-td{
     padding-bottom:1%;
+    text-align:center;
 }
 
 .mealheader-td{
@@ -92,12 +93,24 @@
     cursor: pointer;
     border-radius: 3px;
     text-transform: uppercase;
-    display: block;
     line-height: 0.5;
     /* box-shadow: 0 0 15px 0 #35891D; */
     border: 2px solid #35891D;
     margin: 0 auto;
-    z-index:100000
+    z-index:100000;
+    display:inline-block;
+}
+
+.clearbutton {
+    border: none;
+    color: #fff;
+    padding: 1%;
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    line-height: 0.5;
+    margin: 0 auto;
+    z-index:100000;
 }
 
 .savebutton{

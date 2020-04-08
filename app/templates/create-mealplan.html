@@ -57,7 +57,7 @@
             {% for day,mealplan in dayitem.items(): %}
             <tr class="mealplan-row row">
                 <td class="weekday-td">{{ day }}</td>
-                {% for meal in mealplan %}
+                {% for meal in mealplan: %}
                 <td class="meal-td">
                     <div class="mealplan-cell">
                         <img id='{{day}}{{meal.mealtype}}meal'
@@ -65,8 +65,13 @@
                         <span id='{{day}}{{meal.mealtype}}mealtext' class="meal-text">{{meal.meal_name}}</span>
                         <span id='{{day}}{{meal.mealtype}}mealcal' class="meal-cal">Calories {{meal.meal_cal}}</span>
                     </div>
-                    <button type="button" class="addbutton" data-toggle="modal" data-target="#chooseMealModal"><i
+                    <!-- <div style="display:inline-block"> -->
+                        <button type="button" class="addbutton" data-toggle="modal" data-target="#chooseMealModal"><i
                             class="fa fa-plus"> </i></button>
+                        <button type="button" style="display: none;"  class="clearbutton trashbutton" data-toggle="modal" data-target="#chooseMealModal"><i class="fa fa-trash-alt"> </i>
+                        </button>
+                    <!-- </div> -->
+                   
                 </td>
                 {% endfor %}
             </tr>
@@ -129,9 +134,12 @@
 
     //Get the clciked active elemetn
     var isaddclick;
+    var nextclick;
     $("#chooseMealModal").on('show.bs.modal', function (e) {
         isaddclick = document.activeElement.previousElementSibling;
-        // console.log(isaddclick)
+        nextclick = document.activeElement.nextElementSibling.style
+        //console.log(nextclick)
+        //console.log(document.activeElement.nextElementSibling.toggleAttribute)
     })
 
     //To disable multi-select
@@ -150,7 +158,6 @@
             mealName = $(this).nextAll()[0].children[1].textContent
             mealCal = $(this).nextAll()[0].children[2].textContent
         });
-
         var mealimg_id = isaddclick.childNodes[1].id;
         var mealtext_id = isaddclick.childNodes[3].id;
         var mealcal_id = isaddclick.childNodes[5].id;
@@ -159,6 +166,10 @@
         $("#" + mealtext_id).text(mealName);
         $("#" + mealcal_id).text(mealCal);
 
+        $('input[type="checkbox"]').not(this).prop('checked', false);
+        //console.log(nextclick)
+        //toggle_clearbtn(nextclick)
+        //console.log(document.activeElement.nextElementSibling.style)
         $("#chooseMealModal").modal('hide')
 
     });
@@ -211,7 +222,9 @@
             'option':'create_mealplan'}),
             success: function (data) {
                 //alert(data['status'])
-                setTimeout(window.location.reload(false),3000); 
+                if(data['Response']==1){
+                    setTimeout(window.location.reload(false),2000); 
+                }
             },
             dataType: "json",
             error:function(header,status){
@@ -278,6 +291,14 @@
         }
     }
 
+    function toggle_clearbtn(el){
+        console.log(el)
+        if(el.display == 'none'){
+            el.display = 'inline-block'
+        }else{
+            el.display = 'none'
+        }
+    }
     //For Weekly Date Picker
     var weekpicker, start_date, end_date;
     function set_week_picker(date) {
@@ -288,7 +309,6 @@
     }
     $(document).ready(function () {
         weekpicker = $('.week-picker');
-        console.log(weekpicker);
         weekpicker.datepicker({
             autoclose: true,
             forceParse: false,

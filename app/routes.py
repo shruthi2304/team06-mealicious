@@ -66,7 +66,7 @@ def meet_team():
 @login_required #To protect from users who are not authenticated
 def create_mealplan():
     user_id = current_user.user_id
-    days = ['sat','sun','mon','tue','wed','thu','fri']
+    days = ['sun','mon','tue','wed','thu','fri','sat']
     mealplans_view = []
     for day in days:
         mealplandic = {}
@@ -80,7 +80,9 @@ def create_mealplan():
         mealplan_name = request.json['mealplanName']
         mealplan_week = request.json['mealplanWeek']
         mealplans = request.json['mealplanobj']
+        print(mealplans)
         for key,value in mealplans.items():
+            print(key)
             dayname = key
             totalcal = mealplans[dayname]['totalcal']
             mealplan = Mealplan(mealplan_name=mealplan_name,user_id=user_id,
@@ -95,8 +97,8 @@ def create_mealplan():
             db.session.add(lunmeal)
             db.session.add(dinmeal)
             db.session.commit()
-            flash('Congratulations, Your Mealplan is Created Successfully.==alert-success')
-            return jsonify({'status':"Congratulations, Your Mealplan is Created Successfully. Please wait while the page reloads.....","Response":0})
+        flash('Congratulations, Your Mealplan is Created Successfully.==alert-success')
+        return jsonify({'status':"Congratulations, Your Mealplan is Created Successfully. Please wait while the page reloads.....","Response":1})
     elif(request.method == 'POST' and request.json['option']=='view_mealplan'):
         mealplan_name = request.json['mealplanName']
         mealplan_week = request.json['mealplanWeek']

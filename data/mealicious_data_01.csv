@@ -28,3 +28,4 @@
 27,Ham & Egg Breakfast Cups,120,"INSERT INTO meal_info values( 27,'Ham & Egg Breakfast Cups',120);"
 28,Hummus & Veggie Bowl,642,"INSERT INTO meal_info values( 28,'Hummus & Veggie Bowl',642);"
 29,Low Carb Pancakes,450,"INSERT INTO meal_info values( 29,'Low Carb Pancakes',450);"
+0,default,0,"INSERT INTO meal_info values(0,'default',0);"
