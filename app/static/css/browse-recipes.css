@@ -1,0 +1,153 @@
+/* Recipe Section Styles */
+.food-flex-container {
+	 display: flex;
+	 justify-content: center;
+}
+
+.food-images-flex-container {
+	 width: 500px;
+	 width: 95%; /* 338px / 375px */
+	 display: flex;
+	 flex-direction: row;
+	 justify-content: space-around;
+	 flex-wrap: wrap;
+	 margin: 0 20px;
+}
+
+.search-button {
+	 background-color: #35891D;
+	 border: none;
+	 color: #fff;
+	 padding: 1%;
+	 cursor: pointer;
+	 border-radius: 15px;
+	 text-transform: uppercase;
+	 display: block;
+	 letter-spacing: 2px;
+	 line-height: 1.5;
+	 border: 2px solid #35891D;
+	 margin: 0 auto;
+	 width: 30%;
+}
+
+.button-view-recipe{
+	 background-color: #35891D;
+	 border: none;
+	 color: #fff;
+	 padding: 1%;
+	 cursor: pointer;
+	 border-radius: 15px;
+	 text-transform: uppercase;
+	 display: block;
+	 letter-spacing: 2px;
+	 line-height: 1.5;
+	 border: 2px solid #35891D;
+	 margin: 0 auto;
+	 width: 75%;
+}
+
+.form-control {
+	margin-left: 20%;
+	height: 25px;
+	box-shadow: none;
+	margin-bottom: 10px;
+	padding: 15px;
+	display: inline-block;
+	font-size: 14px;
+	border: 1px solid #35891D;
+	border-radius:15px;
+	width: 60%;
+	background: #fff;
+	float: center;
+	font-size: 17px;
+}
+
+
+.food-image-size {
+	 width: 200px;
+	 height: 200px;
+	 border-radius: 10px;
+}
+
+.food-flex-image {
+	 margin-top: 20px;
+	 text-align: center;
+	 margin-bottom: 20px;
+}
+
+.food-flex-image p {
+	 margin: 0 auto;
+	 margin-top: 5%; /* 11px / 220px */
+	 font-size: 14px;
+}
+
+
+/* Desktop styles */
+@media only screen and (min-width: 767px) {
+	.search-button {
+		 padding: 2%;
+		 width: 55%;
+	}
+
+	.button-view-recipe{
+		 margin-top: 10px;
+		 padding: 7px;
+		 font-size: 12px;		 
+	}
+
+	.form-control {
+		height: 25px;
+		margin: auto;
+		box-shadow: none;
+		margin-bottom: 10px;
+		padding: 15px;
+		display: inline-block;
+		font-size: 14px;
+		border: 1px solid #35891D;
+		border-radius:15px;
+		width: 90%;
+		background: #fff;
+		float: center;
+		font-size: 17px;
+	}
+
+	.homebgimg {
+		 background-image: url(./images/homeimage.jpg);
+		 height: 475px;
+		 height: 40%; /* 475px / 950px */
+	}
+
+	.mascot-container {
+		 width: auto;
+		 height: 95%; /* 380px / 475px */
+	}
+
+	.mascot-container .button {
+		padding: 2.5% 3%;
+	}
+
+	.mascot {
+		 height: 266px; 
+		 height: 70%; /* 266px / 380px */
+	}
+
+	.food-flex-container {
+		 margin: 1%;
+	}
+
+	 
+	.food-image-size {
+		 width: 200px;
+		 height: 250px;
+		 border-radius: 10px;
+	}
+
+	.food-flex-image {
+		 margin: 1%;
+		 padding: 1%;
+	}
+
+	.search-input-group{
+		text-align: center;
+	}		
+}					

@@ -1,0 +1,40 @@
+table ,tr td{
+    border:1px solid #D3D3D3
+}
+tbody {
+    display:block;
+    height:400px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */;
+    color:  #35891D;
+}
+table {
+    width:100%;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: #35891D;
+    color: #fff;
+}
+#refresh_btn{
+    width:12%;
+    padding:6px;
+}
+
+
+/* Desktop styles */
+@media only screen and (min-width: 767px) {
+        
+    #refresh_btn{
+        width:5%;
+    }
+}
+

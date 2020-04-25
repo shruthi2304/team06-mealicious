@@ -33,10 +33,11 @@
                             <div class="hamburguer-icon"><img src="{{ url_for('static', filename='images/hamburger-menu.png') }}" alt="Hamburger icon">
                             </div>
                             <ul id="menu">
-                                    <li id="recipes" class="nav-item"><a class="nav-link " href="browse-recipes.html">Browse Recipes</a></li>
-                                    <li id="meal-plans" class="nav-item"><a class="nav-link " href="#aboutus">About Us</a></li>
-                                    <li id="blog" class="nav-item"><a class="nav-link " href="blog.html">Blog</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                                    <li id="recipes" class="nav-item"><a class="nav-link " href="{{url_for('browse_meals')}}">Browse Meals</a></li>
+                                    <li id="meal-plans" class="nav-item"><a class="nav-link " href="{{url_for('create_mealplan')}}">Create / View Mealplans</a></li>
+                                    <li id="blog" class="nav-item"><a class="nav-link " href="{{url_for('meet_team')}}">Meet The Team</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{url_for('contact_us')}}">Contact Us</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{url_for('admin')}}">Admin</a></li>
                             </ul>
                     </div>
                     <!-- Company logo-->
@@ -46,7 +47,22 @@
                         </a>
 
                     </div>
-                    <div class="user-icon"><img src="{{ url_for('static', filename='images/user-icon.png') }}" alt="User icon"></div>
+                    
+                    <div id="menu-toggle-right">
+                        <input class = "right-check" type="checkbox" />
+                        <div class="user-icon"><img src="{{ url_for('static', filename='images/user-icon.png') }}" alt="User icon"></div>
+                        <ul id="menu-right">
+                            {% if current_user.is_anonymous %}
+                            <li class="nav-item"><a class="nav-link " href="{{ url_for('signin') }}">Sign In</a></li>
+                            <li class="nav-item"><a class="nav-link " href="{{ url_for('signup') }}">Sign Up</a></li>
+                            {% else %}
+                            <li class="nav-item"><p class="mob-greeting">Welcome, {{ current_user.fname}} {{ current_user.lname }} </p><a class="nav-link " href="{{ url_for('signout') }}">Sign Out</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+
+
                     <div class="header-subsection header-right" >
                         <div class="account">
                             {% if current_user.is_anonymous %}
@@ -61,7 +77,7 @@
                         <!--Desktop Navbar Links-->
                         <div class="navbar-links">
                             <div class="navbar-items">
-                                    <a class="nav-link " href="{{url_for('browse_meals')}}">Browse Recipes</a>
+                                    <a class="nav-link " href="{{url_for('browse_meals')}}">Browse Meals</a>
                             </div>
                             <div class="navbar-items">
                                     <a class="nav-link " href="{{url_for('create_mealplan')}}">Create / View Mealplans</a>
@@ -72,6 +88,9 @@
                             <div class="navbar-items">
                                     <a class="nav-link " href="{{url_for('contact_us')}}">Contact Us</a>
                             </div>
+                            <div class="navbar-items">
+                                <a class="nav-link " href="{{url_for('admin')}}">Admin</a>
+                        </div>
                            
                         </div>
                     </div>

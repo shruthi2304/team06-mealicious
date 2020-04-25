@@ -185,15 +185,23 @@ footer {
 }
 
 .user-icon img {
-     max-width: 30px;
-     vertical-align: middle;
+     max-width: 50px;
      border-style: none;
+     display: block;
+     width: 68%;
 }
 
 /*Mobile Menu Links*/
 #menu-toggle input {
      width: 40px;
      height: 32px;
+     position: absolute;
+     opacity: 0;
+}
+
+#menu-toggle-right input {
+     width: 40px;
+     height: 70px;
      position: absolute;
      opacity: 0;
 }
@@ -212,19 +220,59 @@ footer {
      z-index: 100;
 }
 
+#menu-right {
+     position: absolute;
+     width: 50%;
+     margin: 7% 0 0 50px;
+     padding: 8%;
+     background: #d3d4c9;
+     list-style-type: none;
+     opacity: 0.9;
+     transform: translate(100%,0);
+     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+     text-transform: uppercase;
+     z-index: 100;
+     /* right:-100%; */
+}
+
+
+#menu-right li {
+     padding: 5% 0;
+}
+
 #menu li {
      padding: 5% 0;
 }
 
-#menu-toggle input:checked ~ .close-menu-icon {
+#menu-toggle-right input:checked  {
      display: block;
-     transform: none;
+     /* transform: none; */
+     /* transform: translate(-100%,0); */
+}
+
+#menu-toggle-right input:checked ~ ul {
+     display: block;
+     /* transform: none; */
+     transform: translate(-100%,0);
+}
+
+
+#menu-toggle input:checked {
+     display: block;
+     /* transform: none; */
 }
 
 #menu-toggle input:checked ~ ul {
      display: block;
      transform: none;
 }
+
+.mob-greeting{
+     text-align:center;
+     font-weight: bolder;
+     margin: 0px 0 21px;
+}
+
 
 /* Desktop styles */
 @media only screen and (min-width: 767px) {
@@ -296,7 +344,7 @@ footer {
          margin: 1%;
     }
 
-    .hamburguer-icon, .user-icon, #menu-toggle {
+    .hamburguer-icon, .user-icon, #menu-toggle, #menu-toggle-right {
          display: none;
     }
 

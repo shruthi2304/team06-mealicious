@@ -36,7 +36,7 @@
         <div class="col-md-4 col-xs-3 col-right mealactionbtn-wrapper">
                 <div class="form-group mealactionbtn">
                         <button onclick="javascript:save_mealplan()" title="Save Meal Plan" class="savebutton"><i class="fa fa-save"> </i></button>
-                        <button title="Clear All Meals" class="savebutton trashbutton"><i class="fa fa-trash-alt"> </i></button>
+                        <button onclick="javascript:delete_mealplan()" title="Clear All Meals" class="savebutton trashbutton"><i class="fa fa-trash-alt"> </i></button>
                 </div>
                 
         </div>
@@ -167,9 +167,6 @@
         $("#" + mealcal_id).text(mealCal);
 
         $('input[type="checkbox"]').not(this).prop('checked', false);
-        //console.log(nextclick)
-        //toggle_clearbtn(nextclick)
-        //console.log(document.activeElement.nextElementSibling.style)
         $("#chooseMealModal").modal('hide')
 
     });
@@ -213,6 +210,8 @@
             return False
         }
 
+        mealplan_name = $("#mealplan-name").val()
+        mealplan_week = $("#weeklyDatePicker").val()
         mealplanObj = createMealplanObj()
       
         $.ajax({
@@ -230,6 +229,35 @@
             dataType: "json",
             error:function(header,status){
                 alert(status)
+            }
+        });
+
+    }
+
+//Delete The Meal Plan
+    function delete_mealplan() {
+        if ($("#mealplan-name").val() == "") {
+            alert("Please enter the Meal Plan to be deleted!!")
+            return False
+        }
+        
+        mealplan_name = $("#mealplan-name").val()
+        mealplan_week = $("#weeklyDatePicker").val()
+      
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/create-mealplan",
+            data: JSON.stringify({'mealplanName':mealplan_name,'mealplanWeek':mealplan_week,'option':'delete_mealplan'}),
+            success: function (data) {
+                //alert(data['status'])
+                if(data['Response']==1){
+                    setTimeout(window.location.reload(false),2000); 
+                }
+            },
+            dataType: "json",
+            error:function(header,status){
+                alert("Mealplan not Found!!")
             }
         });
 

@@ -46,6 +46,7 @@ class Mealplan(db.Model):
     week_date = db.Column(db.String(64),index=True)
     day_name = db.Column(db.String(3),index=True) 
     total_daily_cal = db.Column(db.Integer)
+    status = db.Column(db.String(1),index=True)
     mealplandetails = db.relationship('MealplanDetail', backref='mealplaninf', lazy='dynamic')
 
     def __repr__(self):

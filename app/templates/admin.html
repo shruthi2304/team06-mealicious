@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+</head>
+<div class="container">
+
+    <div class="title">Database Tables</div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item active">
+            <a class="nav-link" href="#mealplan" data-toggle="tab">Mealplan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#mealplan_detail" data-toggle="tab">Mealplan Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#meal_info" data-toggle="tab">Meals Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#user_profile" data-toggle="tab">User Profile</a>
+        </li>
+    </ul>
+
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="mealplan">
+            <div class = "row" style="text-align: center;">
+                <h3 style="margin-top: 10px;">Mealplan Table <button id="refresh_btn" onclick="javascript:window.location.reload(false)" title="Refresh" class="btn btn-warning"><i class="fa fa-refresh"> </i></button>    
+                </h3>
+            </div>
+            <div class = "row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:10%" scope="col">Mealplan ID</th>
+                            <th style="width:10%" scope="col">User ID</th>
+                            <th scope="col">Week</th>
+                            <th scope="col">Day</th>
+                            <th scope="col">Mealplan Name</th>
+                            <th scope="col">Total Daily Cal </th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in mealplans %}
+                        <tr>
+                            <th style="width:10%" scope="row">{{ m.mealplan_id }}</th>
+                            <td style="width:10%" >{{ m.user_id }}</td>
+                            <td >{{ m.week_date }} </td>
+                            <td >{{ m.day_name }} </td>
+                            <td >{{ m.mealplan_name }}</td>
+                            <td >{{ m.total_daily_cal }}</td>
+                            <td >{{ m.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+               
+    
+                </table>
+            </div>  
+        </div>
+        <div class="tab-pane" id="mealplan_detail">
+            <div class = "row" style="text-align: center;">
+                <h3 style="margin-top: 10px;">Mealplan Details Table <button id="refresh_btn" onclick="javascript:window.location.reload(false)" title="Refresh" class="btn btn-warning"><i class="fa fa-refresh"> </i></button>    
+                </h3>
+            </div>
+            <div class = "row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th  scope="col">MealplanDetail ID</th>
+                            <th  scope="col">Mealplan ID</th>
+                            <th  scope="col">Meal ID</th>
+                            <th  scope="col">Meal Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for md in mealplan_details %}
+                        <tr>
+                            <th scope="row">{{ md.mealplandetail_id }}</th>
+                            <td >{{ md.mealplan_id}}</td>
+                            <td >{{ md.meal_id }} </td>
+                            <td >{{ md.meal_type }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+               
+    
+                </table>
+            </div>  
+        </div>
+        <div class="tab-pane" id="meal_info">
+            <div class = "row" style="text-align: center;">
+                <h3 style="margin-top: 10px;">Meals Info Table <button id="refresh_btn" onclick="javascript:window.location.reload(false)" title="Refresh" class="btn btn-warning"><i class="fa fa-refresh"> </i></button>    
+                </h3>
+            </div>
+            <div class = "row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th  scope="col">Meal ID</th>
+                            <th  scope="col">Meal Name</th>
+                            <th  scope="col">Calorie Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mi in meals %}
+                        <tr>
+                            <th scope="row">{{ mi.meal_id }}</th>
+                            <td >{{ mi.meal_name}}</td>
+                            <td >{{ mi.cal_count }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+        <div class="tab-pane" id="user_profile">
+            <div class = "row" style="text-align: center;">
+                <h3 style="margin-top: 10px;">User Profile Table <button id="refresh_btn" onclick="javascript:window.location.reload(false)" title="Refresh" class="btn btn-warning"><i class="fa fa-refresh"> </i></button>    
+                </h3>
+            </div>
+            <div class = "row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th  scope="col">User ID</th>
+                            <th  scope="col">First Name</th>
+                            <th  scope="col">Last Name</th>
+                            <th  scope="col">Email</th>
+                            <th  scope="col">Date of Birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in userprofile %}
+                        <tr>
+                            <th scope="row">{{ u.user_id }}</th>
+                            <td >{{ u.fname}}</td>
+                            <td >{{ u.lname }} </td>
+                            <td >{{ u.email }} </td>
+                            <td >{{ u.dob }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
