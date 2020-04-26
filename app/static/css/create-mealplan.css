@@ -173,8 +173,9 @@ ul {
     text-align:center;
   }
   
-  li {
+  .modal-mealbody li {
     display: inline-block;
+    padding:5%;
   }
   
   input[type="checkbox"][id^="cb"] {
@@ -312,5 +313,11 @@ ul {
     .modal-text{
         font-size: 18px;
     }
+
+    .modal-mealbody li {
+        display: inline-block;
+        padding:0%;
+      }
+      
 
 }

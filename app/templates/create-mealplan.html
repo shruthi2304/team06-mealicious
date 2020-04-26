@@ -36,7 +36,7 @@
         <div class="col-md-4 col-xs-3 col-right mealactionbtn-wrapper">
                 <div class="form-group mealactionbtn">
                         <button onclick="javascript:save_mealplan()" title="Save Meal Plan" class="savebutton"><i class="fa fa-save"> </i></button>
-                        <button onclick="javascript:delete_mealplan()" title="Clear All Meals" class="savebutton trashbutton"><i class="fa fa-trash-alt"> </i></button>
+                        <button onclick="javascript:delete_mealplan()" title="Delete Meal Plan" class="savebutton trashbutton"><i class="fa fa-trash-alt"> </i></button>
                 </div>
                 
         </div>
@@ -68,8 +68,8 @@
                     <!-- <div style="display:inline-block"> -->
                         <button type="button" class="addbutton" data-toggle="modal" data-target="#chooseMealModal"><i
                             class="fa fa-plus"> </i></button>
-                        <button type="button" style="display: none;"  class="clearbutton trashbutton" data-toggle="modal" data-target="#chooseMealModal"><i class="fa fa-trash-alt"> </i>
-                        </button>
+                        <!-- <button type="button" style="display: none;"  class="clearbutton trashbutton" data-toggle="modal" data-target="#chooseMealModal"><i class="fa fa-trash-alt"> </i>
+                        </button> -->
                     <!-- </div> -->
                    
                 </td>
@@ -81,10 +81,10 @@
     </div>
 
  <!-- Meal Plan Footer-->
- <div class="row mealplan-footer">
+ <!-- <div class="row mealplan-footer">
     <button type="button" class="button btn btn-alt">PRINT</button>
     <button type="button" class="button btn">EMAIL</button>
-</div>
+</div> -->
 
 </div>
 
@@ -137,9 +137,6 @@
     var nextclick;
     $("#chooseMealModal").on('show.bs.modal', function (e) {
         isaddclick = document.activeElement.previousElementSibling;
-        nextclick = document.activeElement.nextElementSibling.style
-        //console.log(nextclick)
-        //console.log(document.activeElement.nextElementSibling.toggleAttribute)
     })
 
     //To disable multi-select
@@ -320,14 +317,7 @@
         }
     }
 
-    function toggle_clearbtn(el){
-        console.log(el)
-        if(el.display == 'none'){
-            el.display = 'inline-block'
-        }else{
-            el.display = 'none'
-        }
-    }
+ 
     //For Weekly Date Picker
     var weekpicker, start_date, end_date;
     function set_week_picker(date) {

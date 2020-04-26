@@ -66,7 +66,7 @@ def meet_team():
 @login_required #To protect from users who are not authenticated
 def admin():
     user_id = current_user.user_id
-    mealplan = Mealplan.query.filter(Mealplan.status == 'Y').all()
+    mealplan = Mealplan.query.all()
     mealplan_detail = MealplanDetail.query.all()
     meals =  MealInfo.query.filter(MealInfo.meal_id != 0).all()
     userprofile = UserProfile.query.all()

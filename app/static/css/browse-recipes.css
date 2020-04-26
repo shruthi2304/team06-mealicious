@@ -81,6 +81,13 @@
 	 font-size: 14px;
 }
 
+.meal-cal{
+    color: #35891D;
+    font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+}
+
 
 /* Desktop styles */
 @media only screen and (min-width: 767px) {

@@ -111,6 +111,15 @@ a:hover{
      margin: 5%; /* 18px / 375px */
 }
 
+.error-images-flex-container {
+     width: 100%; 
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;;
+     flex-wrap: wrap
+}
+
+
 .image-size {
      width: 220px;
      width: 65%; /* 220px / 338px */
@@ -181,7 +190,7 @@ footer {
 }
 
 .user-icon {
-     margin: 0 4%;
+     /* margin: 0 4%; */
 }
 
 .user-icon img {
@@ -201,7 +210,7 @@ footer {
 
 #menu-toggle-right input {
      width: 40px;
-     height: 70px;
+     height: 32px;
      position: absolute;
      opacity: 0;
 }
@@ -223,16 +232,17 @@ footer {
 #menu-right {
      position: absolute;
      width: 50%;
-     margin: 7% 0 0 50px;
+     margin: 7% 0 0 0;
      padding: 8%;
      background: #d3d4c9;
      list-style-type: none;
      opacity: 0.9;
-     transform: translate(100%,0);
+     transform: translate(-100%,0);
      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+     transition: display 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
      text-transform: uppercase;
      z-index: 100;
-     /* right:-100%; */
+     display:none;
 }
 
 
@@ -246,14 +256,14 @@ footer {
 
 #menu-toggle-right input:checked  {
      display: block;
-     /* transform: none; */
+     transform: none;
      /* transform: translate(-100%,0); */
 }
 
 #menu-toggle-right input:checked ~ ul {
-     display: block;
      /* transform: none; */
-     transform: translate(-100%,0);
+     transform: translate(-74%,0);
+     display: block;
 }
 
 
@@ -271,6 +281,14 @@ footer {
      text-align:center;
      font-weight: bolder;
      margin: 0px 0 21px;
+}
+
+.error-title{
+    text-align: center;
+    font-size: 23px;
+    margin: 20px 0px 0px 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 
@@ -359,6 +377,10 @@ footer {
 
     .image-size {
          width: 28%;
+    }
+  
+    .error-image-size {
+     width: 50%;
     }
 
     .flex-image {

@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>File Not Found</h1>
-    <p><a href="{{ url_for('index') }}">Back</a></p>
+    <!-- <h1>File Not Found</h1>
+    <p><a href="{{ url_for('index') }}">Back</a></p> -->
+    <div class="container">
+        <div class="error-title">
+            <p>LOOKS LIKE A COOKIE CRUMBLED!</p>
+            <p>DON'T WORRY, MR. AVOCARDIO HAS GOT YOU.</p>
+        </div>
+
+        <section id="abouttheteam" class="flex-container">
+            <div class="error-images-flex-container">
+                <div class="flex-image error-image-size">
+                    <img src="{{ url_for('static', filename='images/avocuddle.png') }}"  alt="Avacardio Mascot" class="error-image-size">
+                    <a href="{{ url_for('index') }}" > <button class="button">Take me back!</button> </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+ 
 {% endblock %}

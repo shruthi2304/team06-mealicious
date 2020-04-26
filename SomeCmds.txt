@@ -66,4 +66,4 @@ PGPASSWORD=3e923fa1e1879eb458f4719de4bdba9629e5e29ba3c4658989530b68bc690f01 psql
 psql -h ec2-34-202-7-83.compute-1.amazonaws.com -U mcdhzsvpomoyir d6p9qfhei3oth8 -c "COPY wheat FROM 'mealicious_data_01.csv' DELIMITER ';' CSV HEADER"
 
 #To update the database
-heroku flask db upgrade
+heroku run flask db upgrade
